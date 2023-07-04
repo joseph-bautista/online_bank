@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Services\User\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Services\User\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
