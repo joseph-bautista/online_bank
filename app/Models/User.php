@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Auth\Authorizable;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
@@ -19,7 +21,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 
+        'email',
+        'password',
+        'mobile',
+        'role'
     ];
 
     /**
@@ -29,5 +35,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+        'api_token'
     ];
+
+    protected $casts = [
+        'created_at' => 'date: F j, Y',
+        'updated_at' => 'date:  F j, Y',
+    ];
+
+    public function account(): HasOne {
+        return $this->hasOne(Account::class);
+    }
 }
