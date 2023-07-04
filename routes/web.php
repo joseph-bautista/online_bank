@@ -2,7 +2,6 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Services\Auth\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +20,15 @@ $router->get('/login', function () use ($router) {
 });
 
 
-$router->group(['prefix' => 'auth'], function () use ($router) {
-    $$router->post('/login', 'App\Services\Auth\Controllers\AuthController@login');
+$router->group(['prefix' => 'api/v1'], function () use ($router){
+    $router->group(['prefix' => 'auth'], function () use ($router) {
+        $router->post('/login', 'AuthController@login');
+        $router->post('/register', 'AuthController@register');
+        $router->post('/logout', ['middleware'=>'auth', 'uses'=>'AuthController@logout']);
+    });
 });
+
+
 // $router->post('/login', [AuthController::class, 'login']);
 
 // $router->group(['prefix' => 'api/v1'], function() use ($router){
