@@ -11,16 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('provider_bank', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('bank_id');
-            $table->foreignId('provider_id');
-            $table->timestamps();
-            $table->foreign('bank_id')
-                ->references('id')
-                ->on('banks')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+        Schema::table('banks', function (Blueprint $table) {
             $table->foreign('provider_id')
                 ->references('id')
                 ->on('providers')
@@ -34,6 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('provider_bank');
+        Schema::table('banks', function (Blueprint $table) {
+            //
+        });
     }
 };
