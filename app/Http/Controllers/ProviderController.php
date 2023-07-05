@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Provider;
 use Illuminate\Http\Request;
-use App\Services\Transaction\Concerns\TransactionConcern;
 
-class TransactionController extends Controller
+class ProviderController extends Controller
 {
-    use TransactionConcern;
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +14,16 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::with(['banks'])->get();
+        return response()
+            ->json(
+                [
+                    'status' => 200,
+                    'data' => [
+                        'providers' => $providers,
+                    ]
+                ]
+            );
     }
 
     /**
@@ -36,24 +44,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $transaction = $this->sendMoney($request->all());
-        if(!$transaction){
-            return response()->json([
-                "status" => 422,
-                'message' => 'Insufficient balance.'
-            ], 422);
-        }
-
-        return response()
-            ->json(
-                [
-                    'status' => 200,
-                    'message' => 'Successful login',
-                    'data' => [
-
-                    ]
-                ]
-            );
+        //
     }
 
     /**

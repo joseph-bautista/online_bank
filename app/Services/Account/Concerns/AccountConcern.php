@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 trait AccountConcern
 {
-
     public function createAccount($user_id)
     {
         $account = new Account();
@@ -18,6 +17,4 @@ trait AccountConcern
         
         return $account;
     }
-
-
 }

@@ -18,28 +18,10 @@ return new class extends Migration
             $table->float('last_current_balance');
             $table->string('description');
             $table->foreignId('user_id');
-            $table->foreignId('provider_id')->nullable();
-            $table->foreignId('bank_id')->nullable();
-            $table->foreignId('account_id');
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('provider_id')
-                ->references('id')
-                ->on('providers')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('bank_id')
-                ->references('id')
-                ->on('banks')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('account_id')
-                ->references('id')
-                ->on('accounts')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
