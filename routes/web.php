@@ -26,6 +26,13 @@ $router->group(['prefix' => 'api/v1'], function () use ($router){
         $router->post('/register', 'AuthController@register');
         $router->post('/logout', ['middleware'=>'auth', 'uses'=>'AuthController@logout']);
     });
+
+    $router->group(['middleware'=>'auth'], function () use ($router){
+        $router->get('/providers', 'ProviderController@index');
+
+        $router->post('/transactions', 'TransactionController@store');
+        $router->get('/transactions', 'TransactionController@index');
+    });
 });
 
 

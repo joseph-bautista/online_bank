@@ -3,11 +3,12 @@
 namespace App\Services\Account\Concerns;
 
 use App\Models\Account;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 trait AccountConcern
 {
-
     public function createAccount($user_id)
     {
         $account = new Account();
@@ -19,5 +20,7 @@ trait AccountConcern
         return $account;
     }
 
-
+    public function checkAccountExist($email){
+        return User::where('email', $email)->where('email', '!=', Auth::user()->email)->exists();
+    }
 }

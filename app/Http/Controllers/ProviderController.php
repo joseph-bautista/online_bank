@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ProviderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::with(['banks'])->get();
+        return response()
+            ->json(
+                [
+                    'status' => 200,
+                    'data' => [
+                        'providers' => $providers,
+                    ]
+                ]
+            );
     }
 
     /**

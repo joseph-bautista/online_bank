@@ -51,7 +51,10 @@ class AuthController extends Controller
         $user = User::where('email', $request->input('email'))->first();
     
         if (!$user || !password_verify($request->input('password'), $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json([
+                'status' => 401,
+                'message' => 'Invalid credentials'
+            ], 401);
         }
     
         // Generate a token for the user

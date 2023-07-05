@@ -113,4 +113,8 @@ $app->router->group([
 });
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(OwenIt\Auditing\AuditingServiceProvider::class);
+$app->register(Irazasyed\Larasupport\Providers\ArtisanServiceProvider::class);
+$app->configure('audit');
+
 return $app;
