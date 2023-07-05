@@ -7,8 +7,8 @@ use App\Models\User;
 
 class SubtractBalanceToUser
 {
-    public static function handle($from_user_id, $amount)
-    {
+    public static function handle($from_user_id, $amount, $additionalData = [])
+    {   
         $user = User::find($from_user_id);
         $account = Account::where('user_id', $user->id)->first();
         
@@ -22,7 +22,8 @@ class SubtractBalanceToUser
             'user_id' => $user->id,
             'amount' => $amount,
             'last_current_balance' => $account->balance,
-            'description' => $amount.' was withdrawn from your account.'
+            'description' => $amount.' was withdrawn from your account.',
+            'additional_data' => $additionalData
         ];
         CreateTransaction::handle($data);
         return true;

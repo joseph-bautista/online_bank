@@ -10,15 +10,29 @@ use Illuminate\Support\Facades\Auth;
 
 trait TransactionConcern
 {
-    public function sendMoney($data)
+    public function sendMoneyToUser($data)
     {
        $subtractBalance = SubtractBalanceToUser::handle(Auth::user()->id, $data['amount']);
        
        if(!$subtractBalance){
-        return false;
+            return false;
        }
        $addBalance = AddBalanceToUser::handle($data['email'], $data['amount']);
        return true;
+    }
+
+    public function sendMoneyToBank($data)
+    {
+        $additionalData = [
+            "provider_id" => $data['provider_id'],
+            "bank_id" => $data['bank_id'],
+            "account_number" => $data['account_number']
+        ];
+        $subtractBalance = SubtractBalanceToUser::handle(Auth::user()->id, $data['amount'], $additionalData);
+        if(!$subtractBalance){
+            return false;
+        }
+        return true;
     }
 
 }

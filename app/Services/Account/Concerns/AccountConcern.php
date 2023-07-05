@@ -3,7 +3,9 @@
 namespace App\Services\Account\Concerns;
 
 use App\Models\Account;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 trait AccountConcern
 {
@@ -16,5 +18,9 @@ trait AccountConcern
         $account->save();
         
         return $account;
+    }
+
+    public function checkAccountExist($email){
+        return User::where('email', $email)->where('email', '!=', Auth::user()->email)->exists();
     }
 }

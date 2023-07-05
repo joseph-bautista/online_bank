@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\Transaction\Concerns\TransactionConcern;
+use App\Services\Account\Concerns\AccountConcern;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    use TransactionConcern;
+    use TransactionConcern, AccountConcern;
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +17,17 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Auth::user()->transactions;
+        return response()
+            ->json(
+                [
+                    'status' => 200,
+                    'message' => 'User transactions successfully retrieved.',
+                    'data' => [
+                        'transactions' => $transactions,
+                    ]
+                ]
+            );
     }
 
     /**
@@ -36,7 +48,21 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $transaction = $this->sendMoney($request->all());
+        switch($request->type){
+            case "user":
+                if($this->checkAccountExist($request->email)){
+                    return response()->json([
+                        "status" => 422,
+                        'message' => 'You are not allowed to send money to you own account.'
+                    ], 422);
+                }
+                $transaction = $this->sendMoneyToUser($request->all());
+                break;
+            case "bank":
+                $transaction = $this->sendMoneyToBank($request->all());
+                break;
+        }
+
         if(!$transaction){
             return response()->json([
                 "status" => 422,
@@ -48,9 +74,10 @@ class TransactionController extends Controller
             ->json(
                 [
                     'status' => 200,
-                    'message' => 'Successful login',
+                    'message' => 'Money sent successfully',
                     'data' => [
-
+                        'user' => Auth::user(),
+                        'account' => Auth::user()->account
                     ]
                 ]
             );

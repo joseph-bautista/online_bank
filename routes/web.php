@@ -30,7 +30,8 @@ $router->group(['prefix' => 'api/v1'], function () use ($router){
     $router->group(['middleware'=>'auth'], function () use ($router){
         $router->get('/providers', 'ProviderController@index');
 
-        $router->post('/transaction', 'TransactionController@store');
+        $router->post('/transactions', 'TransactionController@store');
+        $router->get('/transactions', 'TransactionController@index');
     });
 });
 
