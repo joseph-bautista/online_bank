@@ -56,9 +56,17 @@ class TransactionController extends Controller
                         'message' => 'You are not allowed to send money to you own account.'
                     ], 422);
                 }
+                $this->validate($request, [
+                    'email' => 'required|email',
+                    'amount' => 'required'
+                ]);
                 $transaction = $this->sendMoneyToUser($request->all());
                 break;
             case "bank":
+                $this->validate($request, [
+                    'account_number' => 'required',
+                    'amount' => 'required'
+                ]);
                 $transaction = $this->sendMoneyToBank($request->all());
                 break;
         }
