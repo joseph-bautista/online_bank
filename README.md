@@ -17,7 +17,7 @@ This is a simple online banking system written in PHP using Laravel Lumen Framew
 7. We can now run the server by running
 > php -S localhost:8000 -t public 
 
-And viola! We have set up our online bank server. 
+And viola! We have set up our online bank backend system. 
 
 We can access the postman workspace here https://www.postman.com/lunar-star-596261/workspace/online-banking-system/overview choose local environment and play along the API Endpoints. 
 
