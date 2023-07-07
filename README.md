@@ -29,7 +29,6 @@ We can then proceed to setting up the UI of it in a separate repository. You can
 
 
 # Technologies Used
-
 1. Laravel Framework Lumen (10.0.0) (Laravel Components ^10.0)
 2. PHP 8.2
 3. MySQL 8
