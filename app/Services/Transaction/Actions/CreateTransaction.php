@@ -11,6 +11,7 @@ class CreateTransaction
     public static function handle($data)
     {
         $transaction = new Transaction();
+        $transaction->name = $data['name'];
         $transaction->type = $data['type'];
         $transaction->user_id = $data['user_id'];
         $transaction->amount = $data['amount'];
