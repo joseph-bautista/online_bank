@@ -24,6 +24,9 @@ We can access the postman workspace here https://www.postman.com/lunar-star-5962
 We can then proceed to setting up the UI of it in a separate repository. You can follow the steps here https://github.com/joseph-bautista/online_bank_ui 
 
 
+![alt text](https://github.com/joseph-bautista/online_bank/blob/master/online_banking.png?raw=true)
+
+
 
 # Lumen PHP Framework
 
