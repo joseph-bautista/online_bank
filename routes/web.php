@@ -37,17 +37,3 @@ $router->group(['prefix' => 'api/v1'], function () use ($router){
         $router->get('/account_details', 'AccountController@index');
     });
 });
-
-
-// $router->post('/login', [AuthController::class, 'login']);
-
-// $router->group(['prefix' => 'api/v1'], function() use ($router){
-//     $router->group(['prefix' => 'auth'], function() use ($router){
-//         $router->post('/login', [AuthController::class,'login']);
-//     });
-// });
-
-// Route::prefix('auth')->group(function(){
-//     dd('test');
-//     Route::post('login', [AuthController::class, 'login']);
-// });
