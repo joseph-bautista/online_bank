@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Provider;
+use App\Models\Bank;
 use Illuminate\Http\Request;
 
-class ProviderController extends Controller
+class BankController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $providers = Provider::all();
+        $banks = Bank::where('provider_id', $request->provider_id)->get();
         return response()
             ->json(
                 [
                     'status' => 200,
                     'data' => [
-                        'providers' => $providers,
+                        'banks' => $banks,
                     ]
                 ]
             );

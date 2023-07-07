@@ -14,6 +14,7 @@ class AddBalanceToUser
         $account->balance = $account->balance + $amount;
         $account->save();
         $data = [
+            'name' => 'Deposited To Your Account',
             'type' => 'deposit',
             'user_id' => $user->id,
             'amount' => $amount,

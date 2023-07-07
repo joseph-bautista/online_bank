@@ -12,7 +12,7 @@ trait TransactionConcern
 {
     public function sendMoneyToUser($data)
     {
-       $subtractBalance = SubtractBalanceToUser::handle(Auth::user()->id, $data['amount']);
+       $subtractBalance = SubtractBalanceToUser::handle('user', Auth::user()->id, $data['amount']);
        
        if(!$subtractBalance){
             return false;
@@ -28,7 +28,7 @@ trait TransactionConcern
             "bank_id" => $data['bank_id'],
             "account_number" => $data['account_number']
         ];
-        $subtractBalance = SubtractBalanceToUser::handle(Auth::user()->id, $data['amount'], $additionalData);
+        $subtractBalance = SubtractBalanceToUser::handle('bank', Auth::user()->id, $data['amount'], $additionalData);
         if(!$subtractBalance){
             return false;
         }

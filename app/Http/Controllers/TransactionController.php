@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Services\Transaction\Concerns\TransactionConcern;
 use App\Services\Account\Concerns\AccountConcern;
@@ -17,7 +18,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Auth::user()->transactions;
+        $transactions = Transaction::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         return response()
             ->json(
                 [
@@ -50,12 +51,6 @@ class TransactionController extends Controller
     {
         switch($request->type){
             case "user":
-                if($this->checkAccountExist($request->email)){
-                    return response()->json([
-                        "status" => 422,
-                        'message' => 'You are not allowed to send money to you own account.'
-                    ], 422);
-                }
                 $this->validate($request, [
                     'email' => 'required|email',
                     'amount' => 'required'
