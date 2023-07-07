@@ -1,5 +1,7 @@
-# Simple Online Bank System
+# Simple Online Bank System (Backend System)
 This is a simple online banking system written in PHP using Laravel Lumen Framework. I also written the frontend that uses this backend system that you can also clone. This is the link to the repository of the frontend https://github.com/joseph-bautista/online_bank_ui
+
+** Please note that the frontend system of this is the recommended frontend to be used. If you wish to create your own frontend system, please refer to this https://www.postman.com/lunar-star-596261/workspace/online-banking-system/overview It is a postman workspace than you can check so you may know the API endpoints that is being used in this system **
 
 # Setting up the system
 1. Clone the repository by opening your terminal and run the 
