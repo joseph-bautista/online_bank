@@ -1,21 +1,21 @@
 # Simple Online Bank System (Backend System)
 This is a simple online banking system written in PHP using Laravel Lumen Framework. I also written the frontend that uses this backend system that you can also clone. This is the link to the repository of the frontend https://github.com/joseph-bautista/online_bank_ui
 
-** Please note that the frontend system of this is the recommended frontend to be used. If you wish to create your own frontend system, please refer to this https://www.postman.com/lunar-star-596261/workspace/online-banking-system/overview It is a postman workspace than you can check so you may know the API endpoints that is being used in this system **
+> Please note that the frontend system of this is the recommended frontend to be used. If you wish to create your own frontend system, please refer to this https://www.postman.com/lunar-star-596261/workspace/online-banking-system/overview It is a postman workspace than you can check so you may know the API endpoints that is being used in this system 
 
 # Setting up the system
 1. Clone the repository by opening your terminal and run the 
-** git clone https://github.com/joseph-bautista/online_bank.git **
+> git clone https://github.com/joseph-bautista/online_bank.git 
 2. Go to the directory of the project by running
-** cd online_bank **
+> cd online_bank 
 3. Create your .env file to the root of the project and update necessary details such as database details.
 4. Create an empty database in mysql.
 5. Go back to the terminal and run 
-** composer install **
+> composer install 
 6. After that, we can create tables and seed our tables by running
-** php artisan migrate:fresh --seed **
+> php artisan migrate:fresh --seed 
 7. We can now run the server by running
-** php -S localhost:8000 -t public **
+> php -S localhost:8000 -t public 
 
 And viola! We have set up our online bank server. 
 
